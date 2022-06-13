@@ -40,8 +40,10 @@ public class Server {
                         response = command + " is not a valid command";
                 }
 
-                PrintWriter writer = new PrintWriter(con_socket.getOutputStream(), true);
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(con_socket.getOutputStream()));
                 writer.write(response);
+                writer.newLine();
+                writer.flush();
 
                 writer.close();
                 reader.close();

@@ -17,14 +17,15 @@ public class Client {
 
             try {
                 Socket client_socket = new Socket(InetAddress.getByName("127.0.0.1"), 1200);
-                PrintWriter writer = new PrintWriter(client_socket.getOutputStream(), true);
 
-                writer.println(command);
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(client_socket.getOutputStream()));
+                writer.write(command);
+                writer.newLine();
+                writer.flush();
 
                 BufferedReader reader = new BufferedReader(new InputStreamReader(client_socket.getInputStream()));
                 System.out.println(reader.readLine());
 
-                writer.flush();
                 client_socket.close();
             } catch (IOException e) {
                 e.printStackTrace();
