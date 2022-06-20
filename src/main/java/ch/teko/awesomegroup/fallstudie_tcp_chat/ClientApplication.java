@@ -15,7 +15,11 @@ public class ClientApplication extends Application {
         stage.setTitle("Chat Client");
         stage.setScene(scene);
         stage.show();
-    }   
+    }
+
+    public void stop() {
+        System.out.println("exit");
+    }
 
     public static void main(String[] args) {
         launch();

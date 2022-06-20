@@ -16,7 +16,8 @@ public class ThreadHandler extends Thread{
 
     @Override
     public void run() {
-        while(true) {
+        Boolean isRunning = true;
+        while(isRunning) {
             try {
                 ObjectInputStream objectInput = new ObjectInputStream(con_socket.getInputStream());
                 Message message = (Message)objectInput.readObject();
@@ -34,20 +35,23 @@ public class ThreadHandler extends Thread{
                     case "get":
                         System.out.println("get");
                         
-                        ObjectOutputStream objectOutput = null;
-                        objectOutput = new ObjectOutputStream(con_socket.getOutputStream());
+                        ObjectOutputStream objectOutput = new ObjectOutputStream(con_socket.getOutputStream());
                         objectOutput.writeObject(chatController.getHistory(50));
                         objectOutput.flush();
-                        
+                    
                         break;
                     default:
                         System.out.println("Invalid request: " + message.getType());
                 }
             } catch (Exception e) {
+                try {
+                    isRunning = false;
+                    con_socket.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
                 e.printStackTrace();
             }
-        }
-
-        // con_socket.close();
+        }        
     }
 }

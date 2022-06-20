@@ -26,7 +26,7 @@ public class ClientThread extends Thread {
     public void run() {
         Message message = new Message("", "", "get");
         
-        while (true){
+        while (true) {
             try {
                 ObjectOutputStream objectOutput = null;
                 objectOutput = new ObjectOutputStream(client_socket.getOutputStream());

@@ -19,7 +19,7 @@ public class Server {
                 if(con_socket.isConnected()){
                     ThreadHandler t = new ThreadHandler(con_socket, chatController);
                     t.start();
-                }
+                } 
 
             }
             } catch (IOException e) {

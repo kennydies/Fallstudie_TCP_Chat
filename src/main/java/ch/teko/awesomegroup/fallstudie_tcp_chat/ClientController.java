@@ -63,6 +63,7 @@ public class ClientController {
 
     public void refreshHistory(Socket client_socket) {
         ClientThread t = new ClientThread(client_socket, area_history);
+        t.setDaemon(true);
         t.start();
     }
 }
