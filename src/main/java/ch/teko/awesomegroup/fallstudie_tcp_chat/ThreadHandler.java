@@ -9,18 +9,13 @@ public class ThreadHandler extends Thread{
     private Socket con_socket;
     private ChatController chatController;
     
-    public ThreadHandler (Socket con_socket){
+    public ThreadHandler (Socket con_socket, ChatController chatController){
         this.con_socket = con_socket;
+        this.chatController = chatController;
     }
 
     @Override
     public void run() {
-
-        // TODO Auto-generated method stub
-        super.run();
-        
-
-
         while(true) {
             try {
                 ObjectInputStream objectInput = new ObjectInputStream(con_socket.getInputStream());
@@ -34,13 +29,14 @@ public class ThreadHandler extends Thread{
                         break;
                     case "send":
                         System.out.println("send");
+                        chatController.saveMessage(message);
                         break;
                     case "get":
                         System.out.println("get");
-
+                        
                         ObjectOutputStream objectOutput = null;
                         objectOutput = new ObjectOutputStream(con_socket.getOutputStream());
-                        objectOutput.writeObject(message);
+                        objectOutput.writeObject(chatController.getHistory(50));
                         objectOutput.flush();
                         
                         break;
@@ -50,11 +46,6 @@ public class ThreadHandler extends Thread{
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-            // BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(con_socket.getOutputStream()));
-            // writer.write(response);
-            // writer.newLine();
-            // writer.flush();
         }
 
         // con_socket.close();

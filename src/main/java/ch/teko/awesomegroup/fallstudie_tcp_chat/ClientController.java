@@ -2,6 +2,7 @@ package ch.teko.awesomegroup.fallstudie_tcp_chat;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -15,6 +16,7 @@ public class ClientController {
     @FXML private TextField txt_username;
     @FXML private TextArea area_history;
     @FXML private TextArea area_message;
+    @FXML private Button btn_connect;
 
     private Socket client_socket;
     
@@ -23,6 +25,7 @@ public class ClientController {
         
         if (register()) {
             txt_username.setDisable(true);
+            btn_connect.setDisable(true);
         }
     }
 
@@ -52,6 +55,7 @@ public class ClientController {
             ObjectOutputStream objectOutput = new ObjectOutputStream(client_socket.getOutputStream());
             objectOutput.writeObject(m);
             objectOutput.flush();
+            area_message.clear();
         } catch (IOException e) {
             e.printStackTrace();
         }
