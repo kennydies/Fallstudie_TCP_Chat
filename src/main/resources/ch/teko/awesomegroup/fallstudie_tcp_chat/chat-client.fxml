@@ -28,7 +28,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </TextField>
-                  <Button id="btn_connect" mnemonicParsing="false" onAction="#connectButtonAction" text="Verbinden">
+                  <Button id="btn_connect" fx:id="btn_connect" mnemonicParsing="false" onAction="#connectButtonAction" text="Verbinden">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
