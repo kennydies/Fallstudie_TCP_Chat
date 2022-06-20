@@ -15,13 +15,9 @@ public class ClientApplication extends Application {
         stage.setTitle("Chat Client");
         stage.setScene(scene);
         stage.show();
-    }
-
-   
+    }   
 
     public static void main(String[] args) {
         launch();
     }
-
-
 }

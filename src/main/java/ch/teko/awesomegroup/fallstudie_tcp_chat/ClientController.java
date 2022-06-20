@@ -19,21 +19,19 @@ public class ClientController {
     private Socket client_socket;
     
     @FXML private void connectButtonAction(ActionEvent event) {
-        System.out.println("connect button test");
         System.out.println("name: " + txt_username.getText());
         
-        if (connect()) {
+        if (register()) {
             txt_username.setDisable(true);
         }
     }
 
     @FXML private void sendButtonAction(ActionEvent event) {
-        System.out.println("send button test");
         System.out.println("message: " + area_message.getText());
         send();
     }
 
-    public boolean connect() {
+    public boolean register() {
         try {
             client_socket = new Socket(InetAddress.getByName("127.0.0.1"), 1200);
             Message m = new Message(txt_username.getText(), "", "register");
@@ -59,12 +57,8 @@ public class ClientController {
         }
     }
 
-
     public void refreshHistory(Socket client_socket) {
         ClientThread t = new ClientThread(client_socket, area_history);
         t.start();
     }
-
-
-
 }

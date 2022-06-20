@@ -1,9 +1,6 @@
 package ch.teko.awesomegroup.fallstudie_tcp_chat;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -36,8 +33,16 @@ public class ThreadHandler extends Thread{
                         System.out.println("registered");
                         break;
                     case "send":
+                        System.out.println("send");
                         break;
                     case "get":
+                        System.out.println("get");
+
+                        ObjectOutputStream objectOutput = null;
+                        objectOutput = new ObjectOutputStream(con_socket.getOutputStream());
+                        objectOutput.writeObject(message);
+                        objectOutput.flush();
+                        
                         break;
                     default:
                         System.out.println("Invalid request: " + message.getType());
