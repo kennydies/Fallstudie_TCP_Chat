@@ -51,7 +51,7 @@
                   <Insets bottom="20.0" left="10.0" />
                </HBox.margin>
             </TextArea>
-            <Button id="btn_send" mnemonicParsing="false" onAction="#sendButtonAction" text="Senden">
+            <Button id="btn_send" fx:id="btn_send" mnemonicParsing="false" onAction="#sendButtonAction" text="Senden">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
