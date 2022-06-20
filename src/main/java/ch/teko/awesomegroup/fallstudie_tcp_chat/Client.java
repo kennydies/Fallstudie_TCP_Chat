@@ -32,4 +32,20 @@ public class Client {
             }
         }
     }
+
+    public static void connect() {
+        try {
+            Socket client_socket = new Socket(InetAddress.getByName("127.0.0.1"), 1200);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void refreshHistory() {
+
+    }
+
+    // for (Message m : chatHistory) {
+    //     result += m.getUsername() + ": \t" + m.getMessage() + "\n";
+    // }
 }

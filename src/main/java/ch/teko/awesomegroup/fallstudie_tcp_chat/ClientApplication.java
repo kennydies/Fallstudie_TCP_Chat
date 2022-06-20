@@ -21,7 +21,6 @@ public class ClientApplication extends Application {
 
     public static void main(String[] args) {
         launch();
-
     }
 
 
