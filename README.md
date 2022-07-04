@@ -3,6 +3,12 @@
 Dieses Projekt beinhaltet einen Chat-Server, der es Clients ermöglicht, einem Chatroom über TCP beizutreten.
 Der Client-Service verfügt über eine grafische Benutzeroberfläche.
 
+Der Client hat die Befehle SEND, GET und REGISTER die an den Server geschickt werden können.
+SEND      -> Sendet Nachricht an den Server
+GET       -> Anfrage um den Chatverlauf zu bekommen
+REGISTER  -> Anmeldung am Server
+
+
 ## Gebrauchsanweisung
 1. Server Applikation starten
 2. Client Applikation starten
