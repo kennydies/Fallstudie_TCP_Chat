@@ -11,6 +11,9 @@ import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 
+/**
+ * Klasse, die Methoden für Client Operationen zur Verfügung stellt 
+ */
 public class ClientController {
 
     @FXML private TextField txt_username;
@@ -34,6 +37,11 @@ public class ClientController {
         send();
     }
 
+    /**
+     * Setzt eine 'register' Nachricht mit Nutzernamen an den Server ab und
+     * initiiert neuen Verbindungs-Thread für den Client
+     * @return boolean, Verbindungsversuch erfolgreich (true) oder nicht (false)
+     */
     public boolean register() {
         try {
             client_socket = new Socket(InetAddress.getByName("127.0.0.1"), 1200);
@@ -49,6 +57,10 @@ public class ClientController {
         return false;
     }
 
+    /**
+     * Setzt eine 'send' Nachricht mit Nutzername und Nachricht an den Server ab
+     * Leert Nachrichtenfeld nach Absenden der Nachricht
+     */
     public void send() {
         Message m = new Message(txt_username.getText(), area_message.getText(), "send");
         try {
@@ -61,6 +73,10 @@ public class ClientController {
         }
     }
 
+    /**
+     * Startet neuen Client Thread 
+     * @param client_socket
+     */
     public void refreshHistory(Socket client_socket) {
         ClientThread t = new ClientThread(client_socket, area_history);
         t.setDaemon(true);

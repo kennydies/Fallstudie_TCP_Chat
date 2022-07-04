@@ -3,14 +3,14 @@ package ch.teko.awesomegroup.fallstudie_tcp_chat;
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+
 
 import javafx.scene.control.TextArea;
 import javafx.fxml.FXML;
 
+/**
+ * Klasse, die den Verbindungs Thread handelt und sich um die periodische Aktualisierung des Nachrichtenverlaufs kümmert
+ */
 public class ClientThread extends Thread {
 
     private Socket client_socket;
@@ -21,7 +21,10 @@ public class ClientThread extends Thread {
         this.area_history = area_history;
 
     }
-    
+
+    /**
+     * Startet den Client Thread, aktualisiert den Nachrichtenverlauf jede Sekunde.
+     */
     @Override
     public void run() {
         Message message = new Message("", "", "get");
@@ -36,19 +39,15 @@ public class ClientThread extends Thread {
                 System.out.println("Get request from client");
 
                 ObjectInputStream objectInput = new ObjectInputStream(client_socket.getInputStream());
-                // Message object = (Message) objectInput.readObject();
-                // List<Message> chatHistory = new ArrayList<>();
+                
                 ArrayList<Message> chatHistory = (ArrayList<Message>) objectInput.readObject();
-
-                // System.out.println(object);
+                
                 System.out.println(chatHistory);
                 
                 String result = "";
                for (Message m : chatHistory) {
                    result += m.getUsername() + ": \t" + m.getMessage() + "\n";
                }
-               //result += object.getUsername() + ": \t" + object.getMessage() + "\n";
-
                 area_history.setText(result);
             } catch (Exception e) {
                 e.printStackTrace();
