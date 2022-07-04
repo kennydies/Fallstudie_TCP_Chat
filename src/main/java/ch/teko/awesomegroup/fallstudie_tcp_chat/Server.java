@@ -4,10 +4,17 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/**
+ * Klasse des Servers für die Verwaltung des Server Sockets und der eingehenden Client Verbindungen 
+ */
 public class Server {
 
     private static ChatController chatController = new ChatController();
     
+     /**
+     * Main Methode des Servers. Erstellt ein Socket und wartet auf Client anfragen.
+     * Wenn ein Client sich verbindet wird ein ThreadHandler instanziert.
+     */
     public static void main(String[] args) {
         System.out.println("Start Server");
         
